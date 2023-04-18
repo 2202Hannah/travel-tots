@@ -1,12 +1,6 @@
 import React from "react";
-import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
-import {
-  Button,
-  Flex,
-  Stack,
-  TextInput,
-  Wrap,
-} from "@react-native-material/core";
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
+import { Button, TextInput } from "react-native-paper";
 
 export const LogIn = ({ navigation }) => {
   return (
@@ -14,21 +8,32 @@ export const LogIn = ({ navigation }) => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <Flex fill={1}>
-        <Stack fill={1} justify="center" spacing={12} p={12}>
+      <View style={{ flex: 1 }}>
+        <View
+          style={{ flex: 1, justifyContent: "center", gap: 12, padding: 12 }}
+        >
           <TextInput label="Username" variant="outlined" />
           <TextInput label="Password" variant="outlined" />
 
-          <Wrap m={4} center spacing={12}>
-            <Button title="Log in" />
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              margin: 4,
+              gap: 12,
+            }}
+          >
+            <Button mode="contained">Log in</Button>
             <Button
-              title="Sign up"
-              variant="outlined"
+              mode="outlined"
               onPress={() => navigation.navigate("Sign up")}
-            />
-          </Wrap>
-        </Stack>
-      </Flex>
+            >
+              Sign up
+            </Button>
+          </View>
+        </View>
+      </View>
     </KeyboardAvoidingView>
   );
 };

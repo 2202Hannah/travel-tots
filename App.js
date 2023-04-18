@@ -4,23 +4,31 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {
   Button,
-  Icon,
-  IconComponentProvider,
-} from "@react-native-material/core";
+  MD3LightTheme as DefaultTheme,
+  Provider as PaperProvider,
+} from "react-native-paper";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import LogIn from "./pages/log-in-page";
 import SignUp from "./pages/sign-up-page";
 
 export default function App() {
+  const theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: "tomato",
+      secondary: "yellow",
+    },
+  };
+
   const Stack = createNativeStackNavigator();
 
   return (
-    <IconComponentProvider IconComponent={MaterialCommunityIcons}>
+    <PaperProvider theme={theme}>
       <NavigationContainer>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.container}>
@@ -32,14 +40,12 @@ export default function App() {
                 options={({ navigation }) => ({
                   headerLeft: () => (
                     <Button
-                      variant="text"
-                      title="Back"
-                      leading={(props) => (
-                        <Icon name="chevron-left" {...props} />
-                      )}
+                      icon="chevron-left"
+                      mode="text"
                       onPress={() => navigation.goBack()}
-                      pressEffect="none"
-                    />
+                    >
+                      Back
+                    </Button>
                   ),
                 })}
               />
@@ -47,7 +53,7 @@ export default function App() {
           </View>
         </TouchableWithoutFeedback>
       </NavigationContainer>
-    </IconComponentProvider>
+    </PaperProvider>
   );
 }
 

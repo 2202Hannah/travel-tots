@@ -4,15 +4,9 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
+  View,
 } from "react-native";
-import {
-  Button,
-  Flex,
-  Stack,
-  Text,
-  TextInput,
-  Wrap,
-} from "@react-native-material/core";
+import { Button, Text, TextInput } from "react-native-paper";
 
 export const SignUp = () => {
   return (
@@ -22,19 +16,29 @@ export const SignUp = () => {
       style={styles.container}
     >
       <ScrollView style={styles.container}>
-        <Flex fill={1}>
-          <Stack fill={1} justify="center" spacing={12} p={12}>
+        <View style={{ flex: 1 }}>
+          <View
+            style={{ flex: 1, justifyContent: "center", gap: 12, padding: 12 }}
+          >
             <Text>Sign up here</Text>
             <TextInput label="First name" variant="outlined" />
             <TextInput label="Last name" variant="outlined" />
             <TextInput label="Username" variant="outlined" />
             <TextInput label="Password" variant="outlined" />
 
-            <Wrap m={4} center spacing={12}>
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                margin: 4,
+                gap: 12,
+              }}
+            >
               <Button title="Sign up" variant="outlined" />
-            </Wrap>
-          </Stack>
-        </Flex>
+            </View>
+          </View>
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );

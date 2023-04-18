@@ -20,8 +20,8 @@ export default function App() {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      primary: "tomato",
-      secondary: "yellow",
+      primary: "#6eadad",
+      secondary: "#F7D05E",
     },
   };
 

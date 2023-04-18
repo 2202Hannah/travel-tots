@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 
 export const LogIn = ({ navigation }) => {
+  const [isSecureTextEntry, setIsSecureTextEntry] = useState<boolean>(true);
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -12,26 +14,33 @@ export const LogIn = ({ navigation }) => {
         <View
           style={{ flex: 1, justifyContent: "center", gap: 12, padding: 12 }}
         >
-          <TextInput label="Username" variant="outlined" />
-          <TextInput label="Password" variant="outlined" />
+          <TextInput
+            label="Username or email address"
+            keyboardType="default"
+            mode="outlined"
+          />
+          <TextInput
+            label="Password"
+            keyboardType="default"
+            secureTextEntry={isSecureTextEntry}
+            mode="outlined"
+            right={
+              <TextInput.Icon
+                icon={isSecureTextEntry ? "eye" : "eye-off"}
+                onPress={() => {
+                  setIsSecureTextEntry(!isSecureTextEntry);
+                }}
+              />
+            }
+          />
 
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              margin: 4,
-              gap: 12,
-            }}
+          <Button mode="contained">Log in</Button>
+          <Button
+            mode="outlined"
+            onPress={() => navigation.navigate("Sign up")}
           >
-            <Button mode="contained">Log in</Button>
-            <Button
-              mode="outlined"
-              onPress={() => navigation.navigate("Sign up")}
-            >
-              Sign up
-            </Button>
-          </View>
+            Sign up
+          </Button>
         </View>
       </View>
     </KeyboardAvoidingView>

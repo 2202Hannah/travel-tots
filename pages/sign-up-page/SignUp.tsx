@@ -8,7 +8,6 @@ import {
 import { Button, TextInput } from "react-native-paper";
 
 export const SignUp = () => {
-  // TODO fix any type
   const lastNameInputRef = useRef<any>();
   const usernameInputRef = useRef<any>();
   const emailInputRef = useRef<any>();

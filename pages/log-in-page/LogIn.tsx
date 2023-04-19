@@ -5,7 +5,6 @@ import { Button, TextInput } from "react-native-paper";
 export const LogIn = ({ navigation }) => {
   const [isSecureTextEntry, setIsSecureTextEntry] = useState<boolean>(true);
 
-  // TODO fix any type
   const passwordInputRef = useRef<any>();
 
   return (

@@ -1,34 +1,48 @@
-import React from "react";
-import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
-import {
-  Button,
-  Flex,
-  Stack,
-  TextInput,
-  Wrap,
-} from "@react-native-material/core";
+import React, { useState } from "react";
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
+import { Button, TextInput } from "react-native-paper";
 
 export const LogIn = ({ navigation }) => {
+  const [isSecureTextEntry, setIsSecureTextEntry] = useState<boolean>(true);
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={styles.container}
     >
-      <Flex fill={1}>
-        <Stack fill={1} justify="center" spacing={12} p={12}>
-          <TextInput label="Username" variant="outlined" />
-          <TextInput label="Password" variant="outlined" />
+      <View style={{ flex: 1 }}>
+        <View
+          style={{ flex: 1, justifyContent: "center", gap: 12, padding: 12 }}
+        >
+          <TextInput
+            label="Username or email address"
+            keyboardType="default"
+            mode="outlined"
+          />
+          <TextInput
+            label="Password"
+            keyboardType="default"
+            secureTextEntry={isSecureTextEntry}
+            mode="outlined"
+            right={
+              <TextInput.Icon
+                icon={isSecureTextEntry ? "eye" : "eye-off"}
+                onPress={() => {
+                  setIsSecureTextEntry(!isSecureTextEntry);
+                }}
+              />
+            }
+          />
 
-          <Wrap m={4} center spacing={12}>
-            <Button title="Log in" />
-            <Button
-              title="Sign up"
-              variant="outlined"
-              onPress={() => navigation.navigate("Sign up")}
-            />
-          </Wrap>
-        </Stack>
-      </Flex>
+          <Button mode="contained">Log in</Button>
+          <Button
+            mode="outlined"
+            onPress={() => navigation.navigate("Sign up")}
+          >
+            Sign up
+          </Button>
+        </View>
+      </View>
     </KeyboardAvoidingView>
   );
 };

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 
 export const LogIn = ({ navigation }) => {
   const [isSecureTextEntry, setIsSecureTextEntry] = useState<boolean>(true);
+
+  const passwordInputRef = useRef<any>();
 
   return (
     <KeyboardAvoidingView
@@ -17,11 +19,16 @@ export const LogIn = ({ navigation }) => {
           <TextInput
             label="Username or email address"
             keyboardType="default"
+            returnKeyType="next"
             mode="outlined"
+            onSubmitEditing={() => passwordInputRef.current.focus()}
+            blurOnSubmit={false}
           />
           <TextInput
+            ref={passwordInputRef}
             label="Password"
             keyboardType="default"
+            returnKeyType="done"
             secureTextEntry={isSecureTextEntry}
             mode="outlined"
             right={
